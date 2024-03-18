@@ -36,16 +36,22 @@ class Ui_Form(object):
         self.pushSave.setGeometry(QRect(270, 10, 75, 24))
         self.label = QLabel(Form)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(20, 170, 261, 241))
+        self.label.setGeometry(QRect(20, 170, 311, 291))
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(10, 50, 331, 22))
         self.pushZoomIn = QPushButton(Form)
         self.pushZoomIn.setObjectName(u"pushZoomIn")
-        self.pushZoomIn.setGeometry(QRect(10, 130, 119, 24))
+        self.pushZoomIn.setGeometry(QRect(10, 140, 131, 24))
         self.pushZoomOut = QPushButton(Form)
         self.pushZoomOut.setObjectName(u"pushZoomOut")
-        self.pushZoomOut.setGeometry(QRect(210, 130, 125, 24))
+        self.pushZoomOut.setGeometry(QRect(200, 140, 131, 24))
+        self.pushColor = QPushButton(Form)
+        self.pushColor.setObjectName(u"pushColor")
+        self.pushColor.setGeometry(QRect(90, 110, 151, 24))
+        font1 = QFont()
+        font1.setFamilies([u"Times New Roman"])
+        self.pushColor.setFont(font1)
 
         self.retranslateUi(Form)
 
@@ -55,10 +61,11 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.pushGenerate.setText(QCoreApplication.translate("Form", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u0438", None))
-        self.pushSave.setText(QCoreApplication.translate("Form", u"Save QR", None))
+        self.pushSave.setText(QCoreApplication.translate("Form", u"Save File", None))
         self.label.setText("")
         self.lineEdit.setText("")
         self.pushZoomIn.setText(QCoreApplication.translate("Form", u"\u0423\u0432\u0435\u043b\u0438\u0447\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443", None))
         self.pushZoomOut.setText(QCoreApplication.translate("Form", u"\u0423\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443", None))
+        self.pushColor.setText(QCoreApplication.translate("Form", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0446\u0432\u0435\u0442", None))
     # retranslateUi
 

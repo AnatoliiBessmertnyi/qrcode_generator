@@ -3,6 +3,7 @@ import os
 
 from PySide6.QtWidgets import (
     QApplication,
+    QColorDialog,
     QFileDialog,
     QMainWindow,
     QMessageBox
@@ -29,10 +30,19 @@ class QRCodeApp(QMainWindow, Ui_Form):
         self.label.setScaledContents(True)
         self.pushSave.clicked.connect(self.save_qr_code)
         self.qr_image = None
-        self.centerOnScreen()  # центрует картинку внутри окна
+        self.centerOnScreen()  # Центрует картинку внутри окна
         self.pushZoomIn.clicked.connect(self.zoom_in)
         self.pushZoomOut.clicked.connect(self.zoom_out)
+        self.pushColor.clicked.connect(self.change_color)
+        self.color = 'white'  # Инициализирует цвет фона как белый
 
+    def change_color(self):
+        # Откройте диалог выбора цвета и получите выбранный цвет
+        color = QColorDialog.getColor()
+
+        # Если был выбран цвет, обновите переменную цвета
+        if color.isValid():
+            self.color = color.name()
 
     def generate_qr_code(self):
         """
@@ -60,7 +70,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
         )
         qr.add_data(text)
         qr.make(fit=True)
-        img = qr.make_image(fill='black', back_color='white')
+        img = qr.make_image(back_color=self.color)
 
         # Проверка доступа к файловой системе
         try:
