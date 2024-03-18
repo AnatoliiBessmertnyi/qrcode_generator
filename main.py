@@ -1,6 +1,6 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from PySide6.QtGui import QPixmap
 import qrcode
 
@@ -26,6 +26,9 @@ class QRCodeApp(QMainWindow, Ui_Form):
         отображает его в окне.
         """
         text = self.lineEdit.text()
+        if not text:
+            QMessageBox.warning(self, "Warning", "The text field is empty.")
+            return
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -43,6 +46,13 @@ class QRCodeApp(QMainWindow, Ui_Form):
         """
         Сохраняет изображение QR-кода в файл, выбранный пользователем.
         """
+        if not QPixmap("qr_code.png"):
+            QMessageBox.warning(
+                self,
+                "Warning",
+                "No QR code has been generated."
+            )
+            return
         filename, _ = QFileDialog.getSaveFileName(
             self,
             "Save QR Code",
