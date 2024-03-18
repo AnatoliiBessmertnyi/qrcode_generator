@@ -1,7 +1,12 @@
 import sys
 import os
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QFileDialog,
+    QMessageBox
+)
 from PySide6.QtGui import QPixmap
 import qrcode
 
@@ -27,9 +32,18 @@ class QRCodeApp(QMainWindow, Ui_Form):
         отображает его в окне.
         """
         text = self.lineEdit.text()
+
         # Если не ввели данные - ошибка при генерации QR-кода
         if not text:
             QMessageBox.warning(self, "Warning", "The text field is empty.")
+            return
+        # Проверка максимальной длины текста > 200
+        elif len(text) > 200:
+            QMessageBox.warning(
+                self,
+                "Warning",
+                "The text is too long for a QR code."
+            )
             return
 
         qr = qrcode.QRCode(
@@ -41,7 +55,18 @@ class QRCodeApp(QMainWindow, Ui_Form):
         qr.add_data(text)
         qr.make(fit=True)
         img = qr.make_image(fill='black', back_color='white')
-        img.save("qr_code.png")
+
+        # Проверка доступа к файловой системе
+        try:
+            img.save("qr_code.png")
+        except IOError:
+            QMessageBox.warning(
+                self,
+                "Warning",
+                "Failed to save the QR code image."
+            )
+            return
+
         pixmap = QPixmap("qr_code.png")
         self.label.setPixmap(pixmap)
 
@@ -77,4 +102,3 @@ if __name__ == "__main__":
     window = QRCodeApp()
     window.show()
     sys.exit(app.exec())
-
