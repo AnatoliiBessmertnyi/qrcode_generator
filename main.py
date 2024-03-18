@@ -3,11 +3,11 @@ import os
 
 from PySide6.QtWidgets import (
     QApplication,
-    QMainWindow,
     QFileDialog,
+    QMainWindow,
     QMessageBox
 )
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap, QGuiApplication
 import qrcode
 
 from qrcode_window import Ui_Form
@@ -25,6 +25,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
         self.pushGenerate.clicked.connect(self.generate_qr_code)
         self.pushSave.clicked.connect(self.save_qr_code)
         self.qr_image = None
+        self.centerOnScreen()
 
     def generate_qr_code(self):
         """
@@ -40,9 +41,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
         # Проверка максимальной длины текста > 200
         elif len(text) > 200:
             QMessageBox.warning(
-                self,
-                "Warning",
-                "The text is too long for a QR code."
+                self, "Warning", "The text is too long for a QR code."
             )
             return
 
@@ -61,9 +60,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
             img.save("qr_code.png")
         except IOError:
             QMessageBox.warning(
-                self,
-                "Warning",
-                "Failed to save the QR code image."
+                self, "Warning", "Failed to save the QR code image."
             )
             return
 
@@ -77,20 +74,34 @@ class QRCodeApp(QMainWindow, Ui_Form):
         # Если QR-код не сгенерирован - ошибка при попытке сохранения файла
         if not QPixmap("qr_code.png"):
             QMessageBox.warning(
-                self,
-                "Warning",
-                "No QR code has been generated."
+                self, "Warning", "No QR code has been generated."
             )
             return
 
         filename, _ = QFileDialog.getSaveFileName(
-            self,
-            "Save QR Code",
-            "",
-            "PNG Files (*.png);;All Files (*)"
+            self, "Save QR Code", "", "PNG Files (*.png);;All Files (*)"
         )
         if filename:
             QPixmap("qr_code.png").save(filename)
+
+        # Проверка успешного сохранения файла
+        try:
+            with open(filename, 'r') as f:
+                pass
+        except IOError:
+            QMessageBox.warning(
+                self, "Warning", "Failed to save the QR code image."
+            )
+
+    def centerOnScreen(self):
+        """
+        Центрирует окно на экране.
+        """
+        resolution = QGuiApplication.primaryScreen().geometry()
+        self.move(
+            (resolution.width() / 2) - (self.frameSize().width() / 2),
+            (resolution.height() / 2) - (self.frameSize().height() / 2)
+        )
 
 
 if __name__ == "__main__":
