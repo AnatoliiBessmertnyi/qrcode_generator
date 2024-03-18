@@ -22,19 +22,19 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(332, 425)
+        Form.resize(357, 699)
         self.pushGenerate = QPushButton(Form)
         self.pushGenerate.setObjectName(u"pushGenerate")
-        self.pushGenerate.setGeometry(QRect(10, 290, 281, 24))
+        self.pushGenerate.setGeometry(QRect(10, 320, 281, 24))
         self.pushSave = QPushButton(Form)
         self.pushSave.setObjectName(u"pushSave")
         self.pushSave.setGeometry(QRect(10, 10, 75, 24))
         self.label = QLabel(Form)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(20, 40, 261, 201))
+        self.label.setGeometry(QRect(20, 40, 261, 241))
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(12, 260, 281, 22))
+        self.lineEdit.setGeometry(QRect(10, 290, 281, 22))
 
         self.retranslateUi(Form)
 

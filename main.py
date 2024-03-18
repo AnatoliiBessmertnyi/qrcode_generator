@@ -23,6 +23,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
         super(QRCodeApp, self).__init__()
         self.setupUi(self)
         self.pushGenerate.clicked.connect(self.generate_qr_code)
+        self.label.setScaledContents(True)
         self.pushSave.clicked.connect(self.save_qr_code)
         self.qr_image = None
         self.centerOnScreen()
@@ -49,7 +50,7 @@ class QRCodeApp(QMainWindow, Ui_Form):
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_H,
             box_size=10,
-            border=4
+            border=1
         )
         qr.add_data(text)
         qr.make(fit=True)
@@ -85,13 +86,11 @@ class QRCodeApp(QMainWindow, Ui_Form):
             QPixmap("qr_code.png").save(filename)
 
         # Проверка успешного сохранения файла
-        try:
-            with open(filename, 'r') as f:
-                pass
-        except IOError:
-            QMessageBox.warning(
-                self, "Warning", "Failed to save the QR code image."
-            )
+            success = QPixmap("qr_code.png").save(filename)
+            if not success:
+                QMessageBox.warning(
+                    self, "Warning", "Failed to save the QR code image."
+                )
 
     def centerOnScreen(self):
         """
