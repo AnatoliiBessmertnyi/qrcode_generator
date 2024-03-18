@@ -22,11 +22,17 @@ class QRCodeApp(QMainWindow, Ui_Form):
     def __init__(self):
         super(QRCodeApp, self).__init__()
         self.setupUi(self)
+        self.lineEdit.setPlaceholderText(
+            'Enter data to convert to QR code'
+        )  # Установка текста подсказки для lineEdit
         self.pushGenerate.clicked.connect(self.generate_qr_code)
         self.label.setScaledContents(True)
         self.pushSave.clicked.connect(self.save_qr_code)
         self.qr_image = None
-        self.centerOnScreen()
+        self.centerOnScreen()  # центрует картинку внутри окна
+        self.pushZoomIn.clicked.connect(self.zoom_in)
+        self.pushZoomOut.clicked.connect(self.zoom_out)
+
 
     def generate_qr_code(self):
         """
@@ -37,12 +43,12 @@ class QRCodeApp(QMainWindow, Ui_Form):
 
         # Если не ввели данные - ошибка при генерации QR-кода
         if not text:
-            QMessageBox.warning(self, "Warning", "The text field is empty.")
+            QMessageBox.warning(self, 'Warning', 'The text field is empty.')
             return
         # Проверка максимальной длины текста > 200
         elif len(text) > 200:
             QMessageBox.warning(
-                self, "Warning", "The text is too long for a QR code."
+                self, 'Warning', 'The text is too long for a QR code.'
             )
             return
 
@@ -58,14 +64,14 @@ class QRCodeApp(QMainWindow, Ui_Form):
 
         # Проверка доступа к файловой системе
         try:
-            img.save("qr_code.png")
+            img.save('qr_code.png')
         except IOError:
             QMessageBox.warning(
-                self, "Warning", "Failed to save the QR code image."
+                self, 'Warning', 'Failed to save the QR code image.'
             )
             return
 
-        pixmap = QPixmap("qr_code.png")
+        pixmap = QPixmap('qr_code.png')
         self.label.setPixmap(pixmap)
 
     def save_qr_code(self):
@@ -73,23 +79,23 @@ class QRCodeApp(QMainWindow, Ui_Form):
         Сохраняет изображение QR-кода в файл, выбранный пользователем.
         """
         # Если QR-код не сгенерирован - ошибка при попытке сохранения файла
-        if not QPixmap("qr_code.png"):
+        if not QPixmap('qr_code.png'):
             QMessageBox.warning(
-                self, "Warning", "No QR code has been generated."
+                self, 'Warning', 'No QR code has been generated.'
             )
             return
 
         filename, _ = QFileDialog.getSaveFileName(
-            self, "Save QR Code", "", "PNG Files (*.png);;All Files (*)"
+            self, 'Save QR Code', '', 'PNG Files (*.png);;All Files (*)'
         )
         if filename:
-            QPixmap("qr_code.png").save(filename)
+            QPixmap('qr_code.png').save(filename)
 
         # Проверка успешного сохранения файла
-            success = QPixmap("qr_code.png").save(filename)
+            success = QPixmap('qr_code.png').save(filename)
             if not success:
                 QMessageBox.warning(
-                    self, "Warning", "Failed to save the QR code image."
+                    self, 'Warning', 'Failed to save the QR code image.'
                 )
 
     def centerOnScreen(self):
@@ -102,11 +108,22 @@ class QRCodeApp(QMainWindow, Ui_Form):
             (resolution.height() / 2) - (self.frameSize().height() / 2)
         )
 
+    def zoom_in(self):
+        """
+        Увеличивает размер QR-кода.
+        """
+        self.label.resize(self.label.width() * 1.1, self.label.height() * 1.1)
 
-if __name__ == "__main__":
+    def zoom_out(self):
+        """
+        Уменьшает размер QR-кода.
+        """
+        self.label.resize(self.label.width() * 0.9, self.label.height() * 0.9)
+
+if __name__ == '__main__':
     # Удалить файл qr_code.png, если он существует
-    if os.path.exists("qr_code.png"):
-        os.remove("qr_code.png")
+    if os.path.exists('qr_code.png'):
+        os.remove('qr_code.png')
 
     app = QApplication(sys.argv)
     window = QRCodeApp()

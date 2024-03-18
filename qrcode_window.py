@@ -23,18 +23,29 @@ class Ui_Form(object):
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(357, 699)
+        Form.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushGenerate = QPushButton(Form)
         self.pushGenerate.setObjectName(u"pushGenerate")
-        self.pushGenerate.setGeometry(QRect(10, 320, 281, 24))
+        self.pushGenerate.setGeometry(QRect(80, 80, 171, 24))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        self.pushGenerate.setFont(font)
         self.pushSave = QPushButton(Form)
         self.pushSave.setObjectName(u"pushSave")
-        self.pushSave.setGeometry(QRect(10, 10, 75, 24))
+        self.pushSave.setGeometry(QRect(270, 10, 75, 24))
         self.label = QLabel(Form)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(20, 40, 261, 241))
+        self.label.setGeometry(QRect(20, 170, 261, 241))
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(10, 290, 281, 22))
+        self.lineEdit.setGeometry(QRect(10, 50, 331, 22))
+        self.pushZoomIn = QPushButton(Form)
+        self.pushZoomIn.setObjectName(u"pushZoomIn")
+        self.pushZoomIn.setGeometry(QRect(10, 130, 119, 24))
+        self.pushZoomOut = QPushButton(Form)
+        self.pushZoomOut.setObjectName(u"pushZoomOut")
+        self.pushZoomOut.setGeometry(QRect(210, 130, 125, 24))
 
         self.retranslateUi(Form)
 
@@ -43,8 +54,11 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.pushGenerate.setText(QCoreApplication.translate("Form", u"Generate QR Code", None))
+        self.pushGenerate.setText(QCoreApplication.translate("Form", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u0438", None))
         self.pushSave.setText(QCoreApplication.translate("Form", u"Save QR", None))
         self.label.setText("")
+        self.lineEdit.setText("")
+        self.pushZoomIn.setText(QCoreApplication.translate("Form", u"\u0423\u0432\u0435\u043b\u0438\u0447\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443", None))
+        self.pushZoomOut.setText(QCoreApplication.translate("Form", u"\u0423\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443", None))
     # retranslateUi
 
