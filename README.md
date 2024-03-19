@@ -11,7 +11,6 @@ git clone git@github.com:AnatoliiBessmertnyi/qrcode_generator.git
 ```
 ```
 cd qrcode_generator
-
 ```
 #### Создать и активировать виртуальное окружение
 
