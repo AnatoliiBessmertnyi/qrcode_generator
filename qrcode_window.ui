@@ -49,7 +49,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../Users/Anatolii/Desktop/sav.png</normaloff>../../Users/Anatolii/Desktop/sav.png</iconset>
+     <normaloff>icons/save as.png</normaloff>icons/save as.png</iconset>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -92,7 +92,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../Users/Anatolii/Desktop/-.png</normaloff>../../Users/Anatolii/Desktop/-.png</iconset>
+     <normaloff>icons/-.png</normaloff>icons/-.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushColor">
@@ -114,7 +114,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../Users/Anatolii/Desktop/пал.png</normaloff>../../Users/Anatolii/Desktop/пал.png</iconset>
+     <normaloff>icons/color.png</normaloff>icons/color.png</iconset>
    </property>
   </widget>
   <widget class="QPushButton" name="pushZoomIn">
@@ -131,7 +131,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../Users/Anatolii/Desktop/+.png</normaloff>../../Users/Anatolii/Desktop/+.png</iconset>
+     <normaloff>icons/+.png</normaloff>icons/+.png</iconset>
    </property>
   </widget>
  </widget>

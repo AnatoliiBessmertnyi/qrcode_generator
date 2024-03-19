@@ -31,6 +31,17 @@ class QRCodeApp(QMainWindow, Ui_Form):
         self.pushColor.clicked.connect(self.change_color)
         self.color = 'white'  # Инициализирует цвет фона как белый
 
+    def change_color(self):
+        """
+        Открывает диалоговое окно для выбора цвета. Если выбранный цвет
+        действителен, обновляет цвет фона QR-кода и генерирует новый QR-код с
+        выбранным цветом фона.
+        """
+        color = QColorDialog.getColor()
+        if color.isValid():
+            self.color = color.name()
+            self.generate_qr_code()
+
     def generate_qr_code(self):
         """
         Генерирует QR-код из входного текста, преобразует его в изображение и
@@ -117,16 +128,6 @@ class QRCodeApp(QMainWindow, Ui_Form):
         """
         self.label.resize(self.label.width() * 0.9, self.label.height() * 0.9)
 
-    def change_color(self):
-        """
-        Открывает диалоговое окно для выбора цвета. Если выбранный цвет
-        действителен, обновляет цвет фона QR-кода и генерирует новый QR-код с
-        выбранным цветом фона.
-        """
-        color = QColorDialog.getColor()
-        if color.isValid():
-            self.color = color.name()
-            self.generate_qr_code()
 
 
 if __name__ == '__main__':
