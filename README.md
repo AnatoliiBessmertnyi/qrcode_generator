@@ -14,13 +14,6 @@ cd qrcode_generator
 ```
 #### Создать и активировать виртуальное окружение
 
-На Linux
-```
-python3 -m venv venv
-```
-```
-source venv/bin/activate
-```
 На Windows:
 ```
 python -m venv venv
@@ -42,7 +35,7 @@ pyside6-uic qrcode_window.ui -o qrcode_window.py
 
 Запустите окно:
 ```
-py main.py
+python main.py
 ```
 
 Введите текст, который вы хотите преобразовать в QR-код. 
