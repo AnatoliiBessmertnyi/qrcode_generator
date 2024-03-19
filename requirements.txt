@@ -1,2 +1,3 @@
-PySide6
-qrcode
+PySide6==6.6.2
+qrcode==7.4.2
+pillow==10.2
