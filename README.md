@@ -13,8 +13,9 @@ git clone git@github.com:AnatoliiBessmertnyi/qrcode_generator.git
 cd qrcode_generator
 
 ```
-Создать и активировать виртуальное окружение:
-На Linux
+### Создать и активировать виртуальное окружение
+
+На Linux:
 ```
 python3 -m venv venv
 ```
@@ -31,11 +32,11 @@ python -m venv venv
 source venv/Scripts/activate
 
 ```
-Установить зависимости:
+### Установить зависимости:
 ```
 pip install -r requirements.txt
 ```
-Для компиляции qrcode_window.py используйте:
+### Для компиляции qrcode_window.py используйте:
 ```
 pyside6-uic qrcode_window.ui -o qrcode_window.py
 ```
