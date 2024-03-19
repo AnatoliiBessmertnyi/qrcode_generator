@@ -15,7 +15,7 @@ cd qrcode_generator
 ```
 #### Создать и активировать виртуальное окружение
 
-На Linux:
+На Linux
 ```
 python3 -m venv venv
 ```
@@ -23,7 +23,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 ```
-На Windows
+На Windows:
 ```
 python -m venv venv
 
@@ -36,7 +36,7 @@ source venv/Scripts/activate
 ```
 pip install -r requirements.txt
 ```
-#### Для компиляции qrcode_window.py используйте:
+#### Для компиляции qrcode_window.py из qrcode_window.ui используйте:
 ```
 pyside6-uic qrcode_window.ui -o qrcode_window.py
 ```
